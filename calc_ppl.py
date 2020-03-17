@@ -347,16 +347,16 @@ try:
         lm_filename_path = os.path.join(os.path.split(dataset.train_path)[0], 'lm-train.arpa')
             
     # subprocess.call(['ngram-count', '-text', generation_filename_path, '-lm', lm_filename_path])
-    _,_ = subprocess.Popen(['ngram-count', '-text', concat_filename_path, '-lm', lm_filename_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+    _,_ = subprocess.Popen([os.environ["HOME"]+'/SRILM/bin/i686-m64/ngram-count', '-text', concat_filename_path, '-lm', lm_filename_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
     
     if not args.calc_original_ppl:
         os.remove(concat_filename_path)
         os.remove(portion_filename_path)
 
     if args.use_test_set:
-        proc1 = subprocess.Popen(['ngram', '-lm', lm_filename_path, '-ppl', dataset.test_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc1 = subprocess.Popen([os.environ["HOME"]+'/SRILM/bin/i686-m64/ngram', '-lm', lm_filename_path, '-ppl', dataset.test_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     else:
-        proc1 = subprocess.Popen(['ngram', '-lm', lm_filename_path, '-ppl', dataset.valid_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc1 = subprocess.Popen([os.environ["HOME"]+'/SRILM/bin/i686-m64/ngram', '-lm', lm_filename_path, '-ppl', dataset.valid_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
     o, e = proc1.communicate()
     o = o.decode('ascii')

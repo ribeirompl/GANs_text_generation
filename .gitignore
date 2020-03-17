@@ -1,3 +1,7 @@
 save/
 pre-trained_save/
 cur_ppl.txt
+dataset/
+.vscode/
+__pycache__/
+*.pyc

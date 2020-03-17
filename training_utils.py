@@ -33,7 +33,7 @@ def save_gan_training_params(gen_model=None, dis_model=None, gen_optimiser=None,
 
     torch.save(dict_save,
                 # os.path.join(save_dir,'saved_training.pth')) # overwrite prev one
-                os.path.join(save_dir,'saved_training_e-{}_i-{}.pth'.format(epoch,iteration)))
+                os.path.join(save_dir,f"saved_training_e-{epoch}.pth"))
 
 def load_gan_training_params(filename, gen_model=None, dis_model=None, gen_optimiser=None, dis_optimiser=None):
     """
